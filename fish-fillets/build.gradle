@@ -5,7 +5,7 @@ android {
     ndkVersion '25.1.8937393'
 
     defaultConfig {
-        applicationId = 'cz.absolutno.fillets'
+        applicationId = 'com.dodecamoon.playfillets'
         minSdkVersion 21
         targetSdk 35
         externalNativeBuild {
@@ -29,7 +29,7 @@ android {
             path 'src/main/cpp/CMakeLists.txt'
         }
     }
-    namespace 'cz.absolutno.fillets'
+    namespace 'com.dodecamoon.playfillets'
 }
 
 dependencies {

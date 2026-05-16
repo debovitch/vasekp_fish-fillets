@@ -1,4 +1,4 @@
-package cz.absolutno.fillets;
+package com.dodecamoon.playfillets;
 
 import android.app.NativeActivity;
 import android.content.res.AssetManager;
