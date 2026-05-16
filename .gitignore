@@ -12,3 +12,6 @@ xcuserdata/
 /*.gcno
 **/xcshareddata/WorkspaceSettings.xcsettings
 .DS_Store
+.idea/
+fish-fillets/.cxx/
+.gradle/
