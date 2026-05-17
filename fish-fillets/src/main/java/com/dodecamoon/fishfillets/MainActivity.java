@@ -1,4 +1,4 @@
-package com.dodecamoon.playfillets;
+package com.dodecamoon.fishfillets;
 
 import android.app.NativeActivity;
 import android.content.res.AssetManager;
