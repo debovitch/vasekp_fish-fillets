@@ -84,7 +84,7 @@ void android_main(struct android_app* app) {
             int events;
             struct android_poll_source* source;
 
-            while(ALooper_pollAll(instance.running() ? 0 : -1, nullptr, &events, (void**)&source) >= 0) {
+            while(ALooper_pollOnce(instance.running() ? 0 : -1, nullptr, &events, (void**)&source) >= 0) {
                 if(source != nullptr)
                     source->process(app, source);
                 if(app->destroyRequested) {

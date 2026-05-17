@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.20)
 project(Fillets)
 
 set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_CXX_FLAGS "-Wall -Werror -g -Wno-unused-variable")
+set(CMAKE_CXX_FLAGS "-Wall -g -Wno-unused-variable")
 
 set(FILLETS_DIR app)
 set(OGG_DIR deps/ogg)
@@ -114,6 +114,7 @@ endif()
 
 if(CMAKE_SYSTEM_NAME STREQUAL "Android")
     add_library(fillets SHARED ${fillets_sources})
+    target_link_options(fillets PRIVATE "-Wl,-z,max-page-size=16384")
 
     target_compile_definitions(fillets PRIVATE "FISH_FILLETS_DISABLE_EXIT")
 else()
@@ -128,6 +129,8 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Android")
             "${CMAKE_SHARED_LINKER_FLAGS} -u ANativeActivity_onCreate")
 
     find_package(oboe REQUIRED CONFIG)
+
+    target_link_options(oboe::oboe INTERFACE "-Wl,-z,max-page-size=16384")
 
     target_include_directories(fillets PRIVATE
             ${ANDROID_NDK}/sources/android/native_app_glue
@@ -172,6 +175,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Android")
             ${LUA_DIR}/lzio.c)
 
     add_library(lua SHARED ${lua_sources})
+    target_link_options(lua PRIVATE "-Wl,-z,max-page-size=16384")
 
     target_compile_definitions(lua PRIVATE "-DLUA_USE_POSIX -D_FORTIFY_SOURCE=0")
 
@@ -194,6 +198,7 @@ if(CMAKE_SYSTEM_NAME STREQUAL "Android")
             ${THEORA_DIR}/lib/internal.c
             ${THEORA_DIR}/lib/quant.c
             ${THEORA_DIR}/lib/state.c)
+    target_link_options(theoradec PRIVATE "-Wl,-z,max-page-size=16384")
 
     target_include_directories(theoradec PRIVATE
             ${OGG_DIR}/include

@@ -40,7 +40,7 @@ AudioSourceList::SourcesGuard AudioSourceList::local() {
 }
 
 AudioSourceList::Sources& AudioSourceList::thread() {
-    if(auto lock = !m_sources_lock.exchange(true, std::memory_order_acquire)) {
+    if(!m_sources_lock.exchange(true, std::memory_order_acquire)) {
         if(m_dirty) {
             m_sources_thread = std::move(m_sources_local);
             m_dirty = false;
